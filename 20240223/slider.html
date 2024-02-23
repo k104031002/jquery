@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .wrapper{
             max-width: 800px;
@@ -18,10 +19,14 @@
             background: #000;
             overflow: hidden;
         }
-        .slider-image{
+        .slide-image{
+            width: 3200px;
+            left: 0px;
+            transition: .4s;
             & li{
-                width: 800px;
+                /* width: 800px; */
                 height: 400px;
+                flex: 1 0 0;
                 & img{
                     width: 100%;
                     height: 100%;
@@ -29,15 +34,45 @@
                 }
             }
         }
+        .pages{
+            bottom:0.8rem;
+            margin-bottom: 0 ;
+            & li{
+                width: 28px;
+                height: 10px;
+                border: 1px solid #fff;
+                margin-inline: 4px;
+            &:hover{
+                background: #fff;
+            }
+        }
+    }
     </style>
   </head>
   <body>
     <div class="wrapper">
         <div class="slider position-relative">
-            <ul class="list-unstyle position-absolute slider-image">
+            <ul class="list-unstyled position-absolute slide-image d-flex" id="slideImage">
                 <li>
                     <img src="/image/slide1.jpeg" alt="">
                 </li>
+                <li>
+                    <img src="/image/slide2.jpeg" alt="">
+                </li>
+                <li>
+                    <img src="/image/slide3.jpeg" alt="">
+                </li>
+                <li>
+                    <img src="/image/slide4.jpeg" alt="">
+                </li>
+            </ul>
+            <a href="" class="slide-btn"><i class="fa-solid fa-angle-left"></i></a>
+            <a href=""><i class="fa-solid fa-angle-right"></i></a>
+            <ul class="list-unstyled pages position-absolute d-flex justify-content-center w-100" id="pages">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
             </ul>
         </div>
     </div>  
@@ -49,5 +84,21 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <script>
+        let slideWidth=800;
+        let slideIndex=0;
+        $("#pages li").eq(slideIndex).css("background","#fff")
+
+        $("#pages li").mouseenter(function(){
+            // console.log("mouse enter");
+            let slideIndex=$(this).index();
+            // console.log(slideIndex);
+            let slideMove=0 - (slideWidth * slideIndex) + "px";
+            // console.log(slideMove);
+            $("#slideImage").css("left",slideMove)
+            $(this).css("background","#fff")
+            .siblings().css("background","none")
+        })
+    </script>
+</body>
 </html>
