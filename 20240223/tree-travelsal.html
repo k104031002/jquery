@@ -26,6 +26,7 @@
 <body>
     <div class="container">
         <table class="table table-bordered">
+            <tbody>
             <tr>
                 <td></td>
                 <td>
@@ -91,6 +92,7 @@
                     <div class="box"></div>
                 </td>
             </tr>
+        </tbody>
         </table>
     </div>
     <!-- Optional JavaScript -->
@@ -116,11 +118,18 @@
         $("td").click(function(){
             // console.log("click");
             // $("td").find(".box").css("background","red") //點下去全部box變色
-            $(this).find(".box").css("background","red") //點下去那格才變色
+            // $(this).find(".box").css("background","red") //點下去那格才變色
             // $(this).children(".box").css("background","red") //點下去那格有在子層才變色
 
         })
-
+        $(".box").click(function(){
+            // console.log("box click");
+            // $(this).parent().css("background","lightblue") //點下去往上一層的格去變色
+            // $(this).parent().parent().css("background","lightblue") //點下去往上上一層的格去變色
+            // $(this).parents().css("background","lightblue") //點下去把上一層所有的格變色
+            // $(this).parentsUntil("tbody").css("background","yellow") // 點下去往前至指定父層格變色
+            $(this).closest("tr").css("background","lightblue") //點下去指定那層直接變色
+        })
 
     </script>
 </body>
