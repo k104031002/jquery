@@ -13,7 +13,7 @@
         <div class="container">
             <table class="table table-bordered">
                 <tr>
-                    <td>KD</td>
+                    <td>Kevin Durant</td>
                     <td></td>
                     <td><p></p></td>
                     <td></td>
@@ -48,8 +48,6 @@
                     <td>D.Howard</td>
                 </tr>
             </table>
-            <h1>H1 title</h1>
-            <h2>H2 title</h2>
         </div>  
 
     <!-- Optional JavaScript -->
@@ -58,26 +56,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        // $("td:eq(3)").css("background","yellow")  //從0開始數  第N個
+      $("td").eq(3).css("background","yellow")
+      $("td").first().css("background","red")
+      $("td").last().css("background","lightblue")
 
-        // $("td:even").css("background","red") //選取奇數
-        // $("td:odd").css("background","green") //選取偶數
+      $("td").has("p").css("background","pink")
+      $("td").not(".not").css("background","lightgreen")
 
-        // $("td:first").css("background","gold") //選取開頭的
-        // $("td:last").css("background","yellow") //選取結尾的
-
-        // $("td:gt(3)").css("background","pink") // n以後的全選取
-        // $("td:lt(11)").css("background","lightblue")  //n以前的全選取
-
-        // $(":header").css("color","red") //header 可直接選取 h1~h6
-
-        // $("td:not(.not)").css("background","yellow")
-
-        $("td:contains('James')").css("background","pink") //選取指定文字
-
-        $("td:empty").css("background","#ccc") //選取空元素
-
-        $("td:has(p)").css("background","purple") // 選取有 P 元素的
-        </script>
+    </script>
   </body>
 </html>
