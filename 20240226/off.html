@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>on append</title>
+    <title>off</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,12 +12,12 @@
   <body>
       <div class="container">
         <div class="py-2">
-            <button id="add" class="btn btn-primary">add</button>
+            <button type="button" class="btn btn-primary" id="off">off</button>
+            <button type="button" class="btn btn-primary" id="on">on</button>
         </div>
-        <ul id="list">
-            <li>item 1</li>
-            <li>item 2</li>
-        </ul>
+        <button type="button" class="btn btn-primary" id="call">
+            call
+        </button>
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -25,17 +25,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        let num=3
+        function sayHello(){
+            console.log("Hello");
+        }
 
-        $("#list").on("click", "li",function(){
-            // console.log("item click");
-            let content=$(this).text();
-            console.log(content);
+        $("#call").on("click",sayHello)
+
+        $("#on").click(function(){
+            $("#call").on("click", sayHello)
         })
-
-        $("#add").on("click",function(){
-            $("#list").append(`<li>item ${num}</li>`);
-            num++;
+        
+        $("#off").click(function(){
+            $("#call").off("click", sayHello)
         })
     </script>
   </body>
