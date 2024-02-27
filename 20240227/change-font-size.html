@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>change font size</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .font-l{
+            font-size: 20px;
+        }
+        .font-s{
+            font-size: 12px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="d-flex justify-content-end">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-size="s">小</button>
+                <button type="button" class="btn btn-primary active" data-size="m">中</button>
+                <button type="button" class="btn btn-primary" data-size="l">大</button>
+            </div>
+        </div>
+        <h1>jQuery</h1>
+        <p>
+            jQuery是一套跨瀏覽器的JavaScript函式庫，用於簡化HTML與JavaScript之間的操作。[2]約翰·雷西格（John Resig）在2006年1月的BarCamp NYC上釋出了第一個版本。目前由Dave Methvin領導的團隊進行開發。全球前10,000個訪問最高的網站中，有65%使用了jQuery，是曾經最受歡迎的JavaScript函式庫[3][4]。
+        </p>
+        <p>
+            jQuery是開源軟體，使用MIT授權條款授權。[5] jQuery的語法設計使得許多操作變得容易，如操作文件（document）、選擇文件物件模型（DOM）元素、建立動畫效果、處理事件、以及開發Ajax程式。jQuery也提供了給開發人員在其上建立外掛程式的能力。這使開發人員可以對底層互動與動畫、進階效果和進階主題化的組件進行抽象化。模組化的方式使jQuery函式庫能夠建立功能強大的動態網頁以及網路應用程式。
+
+        </p>
+        <p>
+            微軟和諾基亞已宣布在他們的平台上繫結jQuery。[6]微軟最初在Visual Studio中整合了jQuery[7]以便在微軟自己的ASP.NET AJAX框架和ASP.NET MVC Framework中使用，而諾基亞則在他的Web執行時組件開發平台中整合了jQuery[8]。MediaWiki自從1.16版本後也開始使用jQuery[9]。
+
+        </p>
+    </div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(".btn").click(function(){
+            let size=$(this).data("size")
+            $(this).addClass("active")
+            .siblings().removeClass("active")
+            // console.log(size);
+            switch(size){
+                case "s":
+                $("html").removeClass().addClass("font-s")
+                break;
+                case "m":
+                $("html").removeClass()
+                break;
+                case "l":
+                $("html").removeClass().addClass("font-l")
+                break;  
+            }
+
+        })
+    </script>
+  </body>
+</html>

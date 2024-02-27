@@ -8,6 +8,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        tr.active{
+            background: lightblue;
+        }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -49,11 +54,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         $(":checkbox").click(function(){
-            // console.log("click");
-            // $(this).closest("tr").css("background","lightblue")
-
-            $("tr").css("background","none")
-            $(":checked").closest("tr").css("background","yellow")
+            $("tr").removeClass()
+            $(":checked").closest("tr").addClass("active")
         })
     </script>
   </body>
