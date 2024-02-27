@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSS move</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .wrapper{
+            width: 800px;
+            height: 400px;
+            background: #ddd;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .box{
+            width: 120px;
+            height: 120px;
+            background: rgb(3, 117, 155);
+            transition: .2s;
+            left:0;
+            top:0;
+        }
+        .text-center{
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="wrapper position-relative">
+        <div class="box position-absolute"></div>
+      </div>
+      <div class="py-2 text-center">
+          <button type="button" class="btn btn-primary" id="up">上</button>
+          <div class="py-2">
+            <button type="button" class="btn btn-primary" id="left">左</button>
+            <button type="button" class="btn btn-primary" id="right">右</button>
+          </div>
+          <button type="button" class="btn btn-primary" id="down">下</button>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        let colors=["red", "green", "blue", "orange", "pink","purple"];
+        let i=0;
+        let move=20;
+
+        $(".btn").click(function(){
+            $(".box").css("background", colors[i]);
+            i++;
+            // if(i==colors.length){
+            //     i=0;
+            // }
+            i=i%colors.length;
+        })
+        $("#down").click(function(){
+            if(parseInt($(".box").css("top"))<280){
+                $(".box").css({
+                    "top": "+="+move,
+                    // "background": "red"
+                })
+            }else{
+                $(".box").css({
+                    "top": 280,
+                })
+            }
+        })
+        $("#up").click(function(){
+            // console.log(parseInt($(".box").css("top"))) //0px
+            if(parseInt($(".box").css("top"))>0){
+                $(".box").css({
+                    "top": "-="+move,
+                    // "background": "green"
+                    })
+            }else{
+                $(".box").css({
+                    "top": 0
+                    })
+            }
+        })
+        $("#right").click(function(){
+            if(parseInt($(".box").css("left"))<680){
+                $(".box").css({
+                    "left": "+="+move,
+                    // "background": "blue"
+                    })
+            }else{
+                $(".box").css({
+                    "left": 680,
+                    })
+            }
+        })
+        $("#left").click(function(){
+            if(parseInt($(".box").css("left"))>0){
+                $(".box").css({
+                    "left": "-="+move,
+                    // "background": "orange"
+                    })
+
+            }else{
+                $(".box").css({
+                    "left": 0
+                })
+            }
+        })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Off</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="btn btn-primary" id="say">say hello!</div>
+    <div class="btn btn-primary" id="bind">bind</div>
+    <div class="btn btn-primary" id="unbind">unbind</div>
+
+  </div><!-- container -->
+  <script
+          src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"></script>
+  <script>
+    var sayHello=function(){
+        console.log("hello!")
+    }
+    $("#bind").click(function(){
+      $("#say").on("click", sayHello)
+    });
+    $("#unbind").click(function(){
+        $("#say").off("click", sayHello)
+    });
+
+  </script>
+</body>
+</html>

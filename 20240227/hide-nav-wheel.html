@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Scroll To Fix</title>
+    <title>Hide Nav</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,20 +15,21 @@
             height: 300vh;
         }
 
-        header {
-            height: 200px;
+        .navbar {
+            transition: .4s;
+        }
+
+        .navbar.hide-nav {
+            transform: translateY(-72px);
         }
     </style>
 </head>
 
 <body>
-    <header>
-
-    </header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="navbar">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" id="navbar">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -40,7 +41,8 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="#">Action 1</a>
                         <a class="dropdown-item" href="#">Action 2</a>
@@ -53,7 +55,6 @@
             </form>
         </div>
     </nav>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -65,20 +66,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script>
-        let headerPosY=$("#navbar").offset().top;
-        // console.log(headerPosY);
-
-
-        $(window).scroll(function(){
-            let scrollTop=$(this).scrollTop();
-            if(scrollTop>=headerPosY){
-                $("#navbar").addClass("fixed-top")
+        <script>
+        //    wheel 手機無法觸發使用
+           $(window).on("wheel",function(event){
+            // console.log(event);
+            // console.log(event.originalEvent.deltaY);
+            //往下
+            if(event.originalEvent.deltaY>0){
+                $("#navbar").addClass("hide-nav")
             }else{
-                $("#navbar").removeClass("fixed-top")
+                $("#navbar").removeClass("hide-nav")
             }
-        })
-    </script>
+           })
+
+
+        </script>
 </body>
 
 </html>

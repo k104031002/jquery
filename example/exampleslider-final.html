@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>slider</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        .wrapper{
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .slider-wrap{
+            height: 480px;
+            background: #000;
+        }
+        .slider-image{
+            /* width: 4000px; */
+            height: 480px;
+            transition: .5s;
+            left:0;
+            /* left: -800px; */
+        }
+        .slider-image li{
+            /* flex-basis: 0;
+            flex-grow: 1; */
+            flex: 1 0 0;
+        }
+        .slider-image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-point{
+            bottom: 0px;
+            left:0;
+            width: 100%;
+        }
+        .slider-point li{
+            border: 1px solid #fff;
+            height: 10px;
+            width: 24px;
+            margin: 0 3px;
+        }
+        .slider-point li.active{
+            background: #fff;
+        }
+        /* .slider-point li:hover{
+            background: #fff;
+        } */
+        .dir-btn{
+            width: 48px;
+            height:100%;
+            /* background: rgba(0,0,0,.6); */
+            color:#fff;
+            opacity: .5;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .dir-btn:hover{
+            opacity: 1;
+        }
+        .dir-btn .fas{
+            color:#fff;
+        }
+        .btn-prev{
+            left:0;
+        }
+        .btn-next{
+            right:0;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="wrapper">
+        <div class="slider-wrap overflow-hidden position-relative">
+            <ul class="list-unstyled slider-image d-flex position-absolute">
+                <!-- <li><img src="images/slide0.jpg" alt=""></li>
+                <li><img src="images/slide1.jpeg" alt=""></li>
+                <li><img src="images/slide2.jpeg" alt=""></li>
+                <li><img src="images/slide3.jpeg" alt=""></li>
+                <li><img src="images/slide4.jpeg" alt=""></li> -->
+            </ul>
+            <ul class="list-unstyled slider-point position-absolute d-flex justify-content-center">
+                <!-- <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li> -->
+            </ul>
+            <a id="next" role="button" class="dir-btn btn-next position-absolute d-flex justify-content-center align-items-center">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            <a id="prev" role="button" class="dir-btn btn-prev position-absolute d-flex justify-content-center align-items-center">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        var index=0;
+        var slideWidth=$(".wrapper").width();
+        var slideImages=["slide1.jpeg", "slide2.jpeg","slide3.jpeg","slide4.jpeg"];
+        // var slideCount=$(".slider-image li").length;
+        var slideCount=slideImages.length;
+        console.log(slideCount)
+
+        var slideImagesContent="";
+        var sliderPoint="";
+        for(let i=0; i<slideCount; i++){
+            // console.log(slideImages[i])
+            // let slideImg=`<li><img src="images/${slideImages[i]}" alt=""></li>`;
+
+            // $(".slider-image").append(slideImg)
+            // $(".slider-point").append("<li></li>");
+
+            slideImagesContent=slideImagesContent+`<li><img src="images/${slideImages[i]}" alt=""></li>`;
+            sliderPoint=sliderPoint+"<li></li>";
+
+        }
+        $(".slider-image").append(slideImagesContent)
+        $(".slider-point").append(sliderPoint);
+
+        $(".slider-point li").eq(0).addClass("active")
+
+        $(".slider-image").css("width", slideCount*slideWidth)
+
+
+        $(".slider-point li").mouseenter(function(){
+            // console.log($(this).index())
+            index=$(this).index();
+            goTo()
+        })
+
+        $("#next").click(function(){
+            index++;
+            console.log(index)
+            if(index>=slideCount){
+                index=0;
+            } 
+            goTo()
+        })
+        $("#prev").click(function(){
+            index--;
+            console.log(index)
+            if(index<0){
+                index=slideCount-1;
+            }
+            goTo()
+        })
+
+        function goTo(){
+            var slideMove=0-index*slideWidth;
+            $(".slider-image").css("left", slideMove )
+            // $(".slider-point li").eq(index).css("background", "#fff")
+            // .siblings().css("background", "none")
+            $(".slider-point li").eq(index).addClass("active")
+            .siblings().removeClass("active")
+        }
+
+        $(window).resize(function(){
+            slideWidth=$(".wrapper").width()
+            $(".slider-image").css("width", slideCount*slideWidth)
+            goTo()
+        })
+    </script>
+  </body>
+</html>
