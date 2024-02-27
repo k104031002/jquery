@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>flip card</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 50px;
+        }
+
+        .container {
+            /* perspective:1000px; */
+        }
+
+        .box img {
+            width: 300px;
+        }
+
+        .card {
+            position: relative;
+            transform-style: preserve-3d;
+            float: left;
+            margin: 0 20px 20px;
+            width: 200px;
+            height: 280px;
+            perspective: 1000px;
+        }
+
+        .card.active {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+
+        .card_wrap {
+            transform-style: preserve-3d;
+        }
+
+        .card img {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .front {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+
+        .back {
+            display: none;
+        }
+
+        .transition {
+            transition: all .5s;
+            -webkit-transition: all .5s;
+        }
+
+        .box:hover {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card transition">
+          <div class="card_wrap">
+            <img class="back" src="/image/card.jpg">
+            <img class="front" src="/image/dr_strange.jpg" alt="">
+          </div>
+        </div>
+        <div class="card transition">
+          <div class="card_wrap">
+            <img class="back" src="/image/card.jpg">
+            <img class="front" src="/image/dr_fate.jpg" alt="">
+          </div>
+        </div>
+        <div class="card transition">
+          <div class="card_wrap">
+            <img class="back" src="/image/card.jpg">
+            <img class="front" src="/image/dr_fate.jpg" alt="">
+          </div>
+        </div>
+        <div class="card transition">
+          <div class="card_wrap">
+            <img class="back" src="/image/card.jpg">
+            <img class="front" src="/image/dr_strange.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(".card").click(function () {
+            let openedCard=$(".card.active").length;
+            // console.log(openedCard);
+            // 限定只能打開兩張  但可以翻回去
+            if(openedCard===2){   
+                $(this).removeClass("active")
+                return;
+            }
+
+            $(this).toggleClass("active")
+        })
+    </script>
+</body>
+
+</html>
