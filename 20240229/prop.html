@@ -16,12 +16,21 @@
       <div class="container">
         <div class="py-2">
             <button type="button" class="btn btn-primary" id="getChecked">get checked</button>
+            <button type="button" class="btn btn-primary" id="setChecked">set checked</button>
         </div>
         <div class="form-check">
             <label for="" class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="" id="agree" value="checkedValue">agree
+                <input type="checkbox" class="form-check-input" name="" id="agree" value="checkedValue">同意 agree
             </label>
         </div>
+        <hr>
+        <div class="form-check mb-2">
+          <label for="" class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="" id="confirm" value="checkedValue">
+            我同意以上條款 I agree with terms.
+          </label>
+        </div>
+        <button id="submit" type="button" class="btn btn-primary" disabled>Submit</button>
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -31,6 +40,20 @@
       <script>
         $("#getChecked").click(function(){
             let checked=$("#agree").prop("checked")
+            console.log(checked);
+        })
+
+        $("#setChecked").click(function(){
+          $("#agree").prop("checked",true)
+        })
+
+        // $("#submit").prop("disabled",true)
+
+        $("#confirm").click(function(){
+          let checked=$(this).prop("checked")
+          // console.log(checked);
+          $("#sumbit").prop("disabled",!checked)
+          //  ! 為 相反 的意思
         })
       </script>
 </body>

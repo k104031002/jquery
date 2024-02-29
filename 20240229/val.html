@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Val </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="container">
+        <div class="py-2">
+            <button type="button" class="btn btn-primary" id="getVal">get value</button>
+            <button type="button" class="btn btn-primary" id="setVal">set value</button>
+        </div>
+        <div class="mb-2">
+            <input type="text" class="form-control" id="input">
+        </div>
+        <h1 id="target"></h1>
+        <hr>
+        <h2>Slelect</h2>
+        <div class="py-2">
+            <button type="button" class="btn btn-primary" id="getCity">get CITY</button>
+            <button type="button" class="btn btn-primary" id="setCity">set CITY</button>
+        </div>
+        <div class="form-row">
+            <div class="col-6">
+                <select name="" id="city" class="form-control">
+                    <option value="0">請選擇縣市</option>
+                    <option value="1">台北市</option>
+                    <option value="2">新北市</option>
+                    <option value="3">桃園市</option>
+                    <option value="4">台中市</option>
+                    <option value="5">台南市</option>
+                    <option value="6">高雄市</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <select name="" id="area" class="form-control">
+                    <option value="0"></option>
+                </select>
+            </div>
+        </div>
+        
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        let areas=[
+            {
+                id: 1,
+                name:"台北市",
+                areas:[
+                    {
+                        id:11,
+                        name:"大安區"
+                    },
+                    {
+                        id:12,
+                        name:"松山區"
+                    },
+                    {
+                        id:13,
+                        name:"信義區"
+                    },
+                    {
+                        id:14,
+                        name:"文山區"
+                    },
+                ]
+            },
+            {
+                id:2,
+                name:"新北市",
+                areas:[
+                    {
+                        id:21,
+                        name:"板橋區"
+                    },
+                    {
+                        id:22,
+                        name:"三重區"
+                    },
+                    {
+                        id:23,
+                        name:"新莊區"
+                    },
+                    {
+                        id:24,
+                        name:"中和區"
+                    },
+                ]   
+            },
+            {
+                id:3,
+                name:"桃園市",
+                areas:[
+                    {
+                        id:31,
+                        name:"桃園區"
+                    },
+                    {
+                        id:32,
+                        name:"中壢區"
+                    },
+                    {
+                        id:33,
+                        name:"平鎮區"
+                    },
+                    {
+                        id:34,
+                        name:"楊梅區"
+                    },
+                ]   
+            },
+            {
+                id:4,
+                name:"台中市",
+                areas:[
+                    {
+                        id:41,
+                        name:"北屯區"
+                    },
+                    {
+                        id:42,
+                        name:"清水區"
+                    },
+                    {
+                        id:43,
+                        name:"太平區"
+                    },
+                    {
+                        id:44,
+                        name:"沙鹿區"
+                    },
+                ]   
+            },
+            {
+                id:5,
+                name:"台南市",
+                areas:[
+                    {
+                        id:51,
+                        name:"永康區"
+                    },
+                    {
+                        id:52,
+                        name:"安平區"
+                    },
+                    {
+                        id:53,
+                        name:"北區"
+                    },
+                    {
+                        id:54,
+                        name:"官田區"
+                    },
+                ]   
+            },
+            {
+                id:6,
+                name:"高雄市",
+                areas:[
+                    {
+                        id:61,
+                        name:"左營區"
+                    },
+                    {
+                        id:62,
+                        name:"三民區"
+                    },
+                    {
+                        id:63,
+                        name:"鳳山區"
+                    },
+                    {
+                        id:64,
+                        name:"楠梓區"
+                    },
+                ]   
+            },
+        ]
+
+        $("#getVal").click(function(){
+            let value=$("#input").val();
+            console.log(value);
+        })
+
+        $("#setVal").click(function(){
+            $("#input").val("new value")
+        })
+
+        $("#input").keyup(function(){
+            console.log($(this).val());
+            $("#target").text($(this).val())
+        })
+        // 及時輸入 並反映在console上面
+
+        $("#getCity").click("click",function(){
+            let city=$("#city").val()
+            let cityName=$("#city").find("option:selected").text();
+            console.log(city);
+            console.log(cityName);
+        })
+
+        $("#setCity").click(function(){
+            $("#city").val(3)
+        })
+
+        $("#city").change(function(){
+            let cityId=$(this).val()
+            console.log(cityId);
+            let selectedAreas=areas.find((city)=>{
+                return city.id==cityId;
+            })
+            selectedAreas=selectedAreas.areas;
+            console.log(selectedAreas);
+            
+
+        })
+    </script>
+  </body>
+</html>
