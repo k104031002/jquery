@@ -65,30 +65,52 @@
 
         $(".btn-move").click(function () {
             let direction = $(this).data("direction")
-
+            let style
             switch (direction) {
                 case "up":
 
-                    $("#box").css("top", "-=" + speed)
-                        .css("background", colors[colorIndex])
+                    // $("#box").css("top", "-=" + speed)
+                    //     .css("background", colors[colorIndex])
+                    //  ↑　不同寫法　↓
+                    style={
+                        top:"-="+speed,
+                        background: colors[colorIndex]
+                    }
+                    $("#box").css(style)
+
                     break;
 
                 case "down":
 
-                    $("#box").css("top", "+=" + speed)
-                        .css("background", colors[colorIndex])
+                    // $("#box").css("top", "+=" + speed)
+                    //     .css("background", colors[colorIndex])
+                    style={
+                        top:"+="+speed,
+                        background: colors[colorIndex]
+                    }
+                    $("#box").css(style)
                     break;
 
                 case "left":
 
-                    $("#box").css("left", "-=" + speed)
-                        .css("background", colors[colorIndex])
+                    // $("#box").css("left", "-=" + speed)
+                    //     .css("background", colors[colorIndex])
+                    style={
+                        left:"-="+speed,
+                        background: colors[colorIndex]
+                    }
+                    $("#box").css(style)
                     break;
 
                 case "right":
 
-                    $("#box").css("left", "+=" + speed)
-                        .css("background", colors[colorIndex])
+                    // $("#box").css("left", "+=" + speed)
+                    //     .css("background", colors[colorIndex])
+                    style={
+                        left:"+="+speed,
+                        background: colors[colorIndex]
+                    }
+                    $("#box").css(style)
                     break;
             }
             colorIndex++;
