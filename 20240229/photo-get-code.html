@@ -63,7 +63,14 @@
     <script>
         $(".photo-list li").click(function(){
             $(this).toggleClass("active")
-            
+            let code="";
+            $(".photo-list li.active").each(function(){
+                code+=$(this).html().trim();
+            })
+            // console.log(code);
+            $("#code").val(code)
+            // $("#code").text(code)
+
     })
     </script>
 </body>
