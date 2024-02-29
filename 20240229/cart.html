@@ -25,7 +25,7 @@
                     <th>小計</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="cart-list">
                 <tr>
                     <td>蘋果</td>
                     <td class="price text-right">20</td>
@@ -63,15 +63,50 @@
 
     <script>
         $(".number").on("keyup change",function(){
-            let row=$(this).closest("tr")
+            // let row=$(this).closest("tr")
+            // let number=Number($(this).val())
+            // let price=Number(row.find(".price").text())
+            // let subtotal=price*number;
+            // // console.log(number);
+            // // console.log(price);
+            // row.find(".s_price").text(subtotal)
+
+            // let total=0
+            // $(".cart-list tr").each(function(){
+            //     let row=$(this);
+            //     let number=Number(row.find(".number").val())
+            //     let price=Number(row.find(".price").text())
+            //     let subtotal=price*number;
+            //     row.find(".s_price").text(subtotal)
+            //     total+=subtotal;  // 透過 each迴圈 將所有 subtotal 加總
+            // })
+            
+            // $("#total").text(total)
+
             let number=Number($(this).val())
-            let price=Number(row.find(".price").text())
+            if(number<0){
+                $(this).val(0)
+            }
 
-            // console.log(number);
-            console.log(price);
-
+            countTotal()
 
         })
+
+        countTotal()
+        function countTotal(){
+            let total=0
+            $(".cart-list tr").each(function(){
+                let row=$(this);
+                let number=Number(row.find(".number").val())
+                let price=Number(row.find(".price").text())
+                let subtotal=price*number;
+                row.find(".s_price").text(subtotal)
+                total+=subtotal;  // 透過 each迴圈 將所有 subtotal 加總
+            })
+            
+            $("#total").text(total)
+
+        }
     </script>
 </body>
 
