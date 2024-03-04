@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Effect</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .box {
+            width: 160px;
+            height: 160px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button type="button" class="btn btn-primary" data-action="show">show</button>
+            <button type="button" class="btn btn-primary" data-action="hide">hide</button>
+            <button type="button" class="btn btn-primary" data-action="toggle">toggle</button>
+            <button type="button" class="btn btn-primary" data-action="animate">animate</button>
+        </div>
+        <div class="box" id="box">
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(".btn").click(function () {
+            let action = $(this).data("action")
+            // console.log(action);
+            switch (action) {
+                case "show":
+                    // $("#box").show()
+                    // $("#box").fadeIn("fast")
+                    // $("#box").fadeIn(1500,function(){
+                    //     console.log("end!!");
+                    // })
+                    $("#box").slideDown();
+                    break;
+                case "hide":
+                    // $("#box").hide()
+                    // $("#box").fadeOut("slow")
+                    $("#box").slideUp();
+                    break;
+                case "toggle":
+                    // $("#box").toggle()
+                    // $("#box").fadeToggle()
+                    $("#box").slideToggle();
+                    break;
+                case "animate":
+                    $("#box").animate({
+                        width:"300px",
+                        "border-radius":"50%",
+                        "background":"green",  // 動畫後無法呈現
+                    },500)
+                    break;
+            }
+        })
+    </script>
+</body>
+
+</html>
