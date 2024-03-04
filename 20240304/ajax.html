@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ajax</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <div class="text-center" id="show">
+                顯示經緯度
+            </div>
+        </div>
+        <div class="row" id="schoolList">
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        let schools = null;
+
+        var jqxhr = $.get("taoyuan.json", function () {
+            //如果 post 成功處理方式
+        }).done(function (response) {
+            //post 成功時執行，跟上面分開的話上面可以處理回傳資料，這邊單純回傳訊息
+            // console.log(response);
+
+            let listContent = "";
+            schools = response;
+            response.forEach((school) => {
+                // console.log(school);
+                listContent += `<div class="col-lg-4 col-md-6 mb-3">
+        <div class="card p-3">
+          <h2 class="h3">${school.name}</h2>
+          <button class="btn btn-primary"
+          data-school-id="${school.school_id}"
+          data-lat="${school.lat}"
+          data-lng="${school.lng}"
+          >Get Location</button>
+        </div>
+      </div>`
+            })
+            $("#schoolList").append(listContent)
+        }).fail(function () {
+            //post 失敗的訊息
+        }).always(function () {
+            //一次程序完成時執行
+        });
+
+        $("#schoolList").on("click", ".btn", function () {
+            // console.log("click");
+            // 從 dom裡面取資料
+            // let lat=$(this).data("lat")
+            // let lng=$(this).data("lng")
+            // $("#show").text(`lat:${lat}, lng:${lng}`)
+
+            // 從原始資料裡面取資料
+            let schoolId = $(this).data("schoolId")
+            // console.log(schoolId);
+            let schoolData = schools.find((school) => {
+                return school.school_id == schoolId;
+            })
+            // console.log(schoolData);
+            $("#show").html(`<h1>${schoolData.name}</h1>lat: ${schoolData.lat},lng: ${schoolData.lng}`)
+        })
+    </script>
+</body>
+
+</html>
